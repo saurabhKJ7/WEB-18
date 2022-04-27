@@ -1,0 +1,87 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #navbar {
+            display: flex;
+            justify-content: space-around;
+            font-size: 28px;
+            background-color: rgb(61, 61, 158);
+            padding: 10px;
+            }
+
+        a {
+        text-decoration: none;
+        color: white;
+        }
+        #container {
+            width: 80%;
+            margin: auto;
+            margin-top: 50px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 30px;
+        }
+        #container>div{
+            text-align: center;
+            border-radius: 10px;
+            box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+        }
+        div>img{
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+        }
+        #container>div>p+img{
+            width: 50%;
+            height: 60px;
+            margin-top: -20px;
+            margin-bottom: 5px;
+        }
+        h2{
+            margin-top: -10px;
+            margin-bottom: 25px;
+        }
+        #container>div>p{
+            margin-top: -20px;
+            color: rgb(75, 72, 72);
+            font-size: 17px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="navbar">
+        <div><a href="backend.html">Backend</a></div>
+        <div><a href="frontend.html">Frontend</a></div>
+    </div>
+    <div id="container"></div>
+</body>
+
+</html>
+<script>
+    var investorsArr = JSON.parse(localStorage.getItem("investorsData"));
+    console.log("name",investorsArr);
+    investorsArr.forEach(function (elem) {
+        var box = document.createElement("div");
+        var investorPicture = document.createElement("img");
+        investorPicture.setAttribute("src", elem.investorImg);
+        var investorName = document.createElement("h3");
+        investorName.innerText = elem.investorName;
+        var investorPosition = document.createElement("p");
+        investorPosition.innerText = elem.investorPosition;
+        var investorCompanyLogo = document.createElement("img");
+        investorCompanyLogo.setAttribute("src", elem.investorCompanyLogo);
+        box.append(investorPicture, investorName, investorPosition, investorCompanyLogo);
+        console.log(box)
+        document.querySelector("#container").append(box);
+  });
+    
+  
+</script>
+
